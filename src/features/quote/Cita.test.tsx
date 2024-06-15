@@ -1,34 +1,17 @@
-import {  screen, fireEvent } from "@testing-library/react";
-import { rest } from "msw";
-import { render } from "../../test-utils";
-import { setupServer } from "msw/node";
-import { Provider } from "react-redux";
-import { store } from "../../app/store";
-import { API_URL } from "../../app/constants";
-import Cita from "./Cita";
-
-const server = setupServer(
-  rest.get(`${API_URL}`, (req, res, ctx) => {
-    const character = req.url.searchParams.get("character");
-    return res(
-      ctx.json([{ quote: "Test Quote", character: character || undefined }])
-    );
-  })
-);
+import { screen, fireEvent } from '@testing-library/react';
+import { server } from '../../mocks/server'; 
+import { render } from '../../test-utils'; 
+import Cita from './Cita';
 
 beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
-test("hacer request a la API con texto introducido en el input", async () => {
-  render(
-    <Provider store={store}>
-      <Cita />
-    </Provider>
-  );
+test('hacer request a la API con texto introducido en el input', async () => {
+  render(<Cita />);
 
-  fireEvent.change(screen.getByLabelText("Author Cita"), {
-    target: { value: "Bart" },
+  fireEvent.change(screen.getByLabelText('Author Cita'), {
+    target: { value: 'Bart' },
   });
   fireEvent.click(screen.getByText(/Obtener Cita/i));
 
