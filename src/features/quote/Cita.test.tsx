@@ -1,5 +1,6 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import {  screen, fireEvent } from "@testing-library/react";
 import { rest } from "msw";
+import { render } from "../../test-utils";
 import { setupServer } from "msw/node";
 import { Provider } from "react-redux";
 import { store } from "../../app/store";
