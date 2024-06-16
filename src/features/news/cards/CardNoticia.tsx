@@ -14,7 +14,7 @@ interface IProps {
   setModal: Dispatch<SetStateAction<IModal>>;
 }
 
-const CardNueva = ({ noticia, setModal }: IProps) => {
+const CardNoticia = ({ noticia, setModal }: IProps) => {
   return (
     <TarjetaNoticia>
       <ImagenTarjetaNoticia src={noticia.imagen} />
@@ -34,4 +34,4 @@ const CardNueva = ({ noticia, setModal }: IProps) => {
   );
 };
 
-export default CardNueva;
+export default CardNoticia;
