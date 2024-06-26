@@ -10,29 +10,24 @@ import {
 } from "./styled";
 
 const Bio = () => {
-  const [bioActiva, setBioActiva] = useState(
-    INFO_SIMPSONS[NombresSimpsons.BART]
-  );
+  const [bioActiva, setBioActiva] = useState(INFO_SIMPSONS[NombresSimpsons.BART]);
 
-  const onClick: (nombre: NombresSimpsons) => void = (nombre) =>
-    setBioActiva(INFO_SIMPSONS[nombre]);
+  const onClick = (nombre: NombresSimpsons) => setBioActiva(INFO_SIMPSONS[nombre]);
 
   const crearBotones = () => {
-    return Object.keys(INFO_SIMPSONS).map((nombre: string) => (
+    return Object.values(NombresSimpsons).map((nombre) => (
       <Boton
-        key={nombre as string}
-        onClick={() => {
-          onClick(nombre as NombresSimpsons);
-        }}
+        key={nombre}
+        onClick={() => onClick(nombre)}
         isActive={bioActiva.id === nombre}
       >
-        {nombre}
+        {INFO_SIMPSONS[nombre].nombre}
       </Boton>
     ));
   };
 
   return (
-    <Container>
+    <Container data-testid="bioContainer">
       <ContainerBotones>{crearBotones()}</ContainerBotones>
       <div>
         <div>
